@@ -1,30 +1,62 @@
 language: python
+
+stage:
+  - compliance_lint
+  - compliance_secret
+  - compliance_vulnerability
+  - build
+
+
 jobs:
   include:
-    - name: "Python 3.6.12 on Xenial Linux"
+    - stage: compliance_lint
+      name: "Compliance: Check if the code is properly lint"
+      script:
+        - pytest --flake8
+        - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
+    
+    - stage: compliance_vulnerability
+      name: "Compliance: Check if there are vulnerabilities in the dependencies"
+      script: safety check
+
+    - stage: compliance_secret
+      name: "Compliance: Search for secrets within the commit"
+      
+    - stage: build
+      name: "Python 3.6.12 on Xenial Linux"
       python: 3.6.12
-    - name: "Python 3.7.9 on Xenial Linux"
+      script: python3 PyFuscation.py || python PyFuscation.py
+
+      name: "Python 3.7.9 on Xenial Linux"
       python: 3.7.9
-    - name: "Python 3.8.7 on Xenial Linux"
+      script: python3 PyFuscation.py || python PyFuscation.py
+      
+      name: "Python 3.8.7 on Xenial Linux"
       python: 3.8.7
-    - name: "Python 3.9.0 on Xenial Linux"
+      script: python3 PyFuscation.py || python PyFuscation.py
+      
+      name: "Python 3.9.0 on Xenial Linux"
       python: 3.9.0
-    - name: "Python 3.9.1 on Xenial Linux"
+      script: python3 PyFuscation.py || python PyFuscation.py
+      
+      name: "Python 3.9.1 on Xenial Linux"
       python: 3.9.1
+      script: python3 PyFuscation.py || python PyFuscation.py
 
 before_install:
   - python --version
+  - uname -a
+  - lsb_release -a
   - pip install -U pip
   - pip install pytest-flake8
   - pip install safety
   - pip install pycodestyle
+  - pip --version
 
 install:
   - pip install -r requirements.txt
 
 script: 
-  - python3 PyFuscation.py || python PyFuscation.py
   - pytest --flake8
   - safety check
   - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-
