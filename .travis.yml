@@ -17,6 +17,7 @@ before_install:
   - pip install -U pip
   - pip install pytest-flake8
   - pip install safety
+  - pip install pycodestyle
 
 install:
   - pip install -r requirements.txt
@@ -25,4 +26,5 @@ script:
   - python3 PyFuscation.py || python PyFuscation.py
   - pytest --flake8
   - safety check
+  - pycodestyle PyFuscation
 
