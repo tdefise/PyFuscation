@@ -9,7 +9,6 @@ python:
 stage:
   - build
 
-
 jobs:
   include:
     - stage: compliance_lint
@@ -18,13 +17,6 @@ jobs:
         - pytest --flake8
         - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
     
-    - stage: compliance_vulnerability
-      name: "Compliance: Check if there are vulnerabilities in the dependencies"
-      script: safety check
-
-    - stage: compliance_secret
-      name: "Compliance: Search for secrets within the commit"
-      
     - stage: build
       name: "Python 3.9.1 on Xenial Linux"
       python: 3.9.1
@@ -39,6 +31,7 @@ before_install:
   - pip install safety
   - pip install pycodestyle
   - pip --version
+  - safety check
 
 script: python3 PyFuscation.py || python PyFuscation.py
 
