@@ -20,10 +20,20 @@ import configparser
 import banner
 
 
-def printR(out): print("\033[91m{}\033[00m" .format("[!] " + out))
-def printG(out): print("\033[92m{}\033[00m" .format("[*] " + out))
-def printY(out): print("\033[93m{}\033[00m" .format("[+] " + out))
-def printP(out): print("\033[95m{}\033[00m" .format("[-] " + out))
+def printR(out):
+    print("\033[91m{}\033[00m" .format("[!] " + out))
+
+
+def printG(out):
+    print("\033[92m{}\033[00m" .format("[*] " + out))
+
+
+def printY(out):
+    print("\033[93m{}\033[00m" .format("[+] " + out))
+
+
+def printP(out):
+    print("\033[95m{}\033[00m" .format("[-] " + out))
 
 
 def realTimeMuxER(command):
@@ -272,10 +282,10 @@ if __name__ == "__main__":
 
     config = configparser.ConfigParser()
     parser = ArgumentParser()
-    parser.add_argument("-f",   dest="func",    help="Obfuscate functions",     action="store_true")
-    parser.add_argument("-v",   dest="var",     help="Obfuscate variables",     action="store_true")
-    parser.add_argument("-p",   dest="par",     help="Obfuscate parameters",    action="store_true")
-    parser.add_argument("--ps", dest="script",  help="Obfuscate powershell")
+    parser.add_argument("-f", dest="func", help="Obfuscate functions", action="store_true")
+    parser.add_argument("-v", dest="var", help="Obfuscate variables", action="store_true")
+    parser.add_argument("-p", dest="par", help="Obfuscate parameters", action="store_true")
+    parser.add_argument("--ps", dest="script", help="Obfuscate powershell")
 
     args = parser.parse_args()
 
@@ -287,7 +297,7 @@ if __name__ == "__main__":
         # Check if the input file is valid:
         if not os.path.isfile(args.script):
             printR("Check File: " + args.script)
-            exit()  
+            exit()
         else:
             PSconfigFile = os.path.abspath(os.path.dirname(__file__)) + "/PSconfig.ini"
             config.read(PSconfigFile)

@@ -14,7 +14,17 @@ def randomString():
         return string
 
 
-def printR(out): print("\033[91m{}\033[00m" .format("[!] " + out))
-def printG(out): print("\033[92m{}\033[00m" .format("[*] " + out))
-def printY(out): print("\033[93m{}\033[00m" .format("[+] " + out))
-def printP(out): print("\033[95m{}\033[00m" .format("[-] " + out))
+def printR(out):
+    print("\033[91m{}\033[00m" .format("[!] " + out))
+
+
+def printG(out):
+    print("\033[92m{}\033[00m" .format("[*] " + out))
+
+
+def printY(out):
+    print("\033[93m{}\033[00m" .format("[+] " + out))
+
+
+def printP(out):
+    print("\033[95m{}\033[00m" .format("[-] " + out))
