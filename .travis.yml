@@ -13,6 +13,7 @@ jobs:
 before_install:
   - python --version
   - pip install -U pip
+  - pip install pytest-flake8
 
 install:
   - pip install -r requirements.txt
