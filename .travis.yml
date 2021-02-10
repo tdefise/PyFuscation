@@ -1,6 +1,6 @@
 arch: amd64
 os: linux
-dist: xenial
+dist: focal
 language: python
 cache: pip
 python:
