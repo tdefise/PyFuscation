@@ -1,4 +1,10 @@
 language: python
+python:
+  - "3.6.12"
+  - "3.7.9"
+  - "3.8.7"
+  - "3.9.0"
+  - "pypy3"
 
 stage:
   - compliance_lint
@@ -23,22 +29,6 @@ jobs:
       name: "Compliance: Search for secrets within the commit"
       
     - stage: build
-      name: "Python 3.6.12 on Xenial Linux"
-      python: 3.6.12
-      script: python3 PyFuscation.py || python PyFuscation.py
-
-      name: "Python 3.7.9 on Xenial Linux"
-      python: 3.7.9
-      script: python3 PyFuscation.py || python PyFuscation.py
-      
-      name: "Python 3.8.7 on Xenial Linux"
-      python: 3.8.7
-      script: python3 PyFuscation.py || python PyFuscation.py
-      
-      name: "Python 3.9.0 on Xenial Linux"
-      python: 3.9.0
-      script: python3 PyFuscation.py || python PyFuscation.py
-      
       name: "Python 3.9.1 on Xenial Linux"
       python: 3.9.1
       script: python3 PyFuscation.py || python PyFuscation.py
@@ -55,8 +45,3 @@ before_install:
 
 install:
   - pip install -r requirements.txt
-
-script: 
-  - pytest --flake8
-  - safety check
-  - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
