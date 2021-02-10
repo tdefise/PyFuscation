@@ -17,5 +17,7 @@ before_install:
 install:
   - pip install -r requirements.txt
 
-script: python3 PyFuscation.py || python PyFuscation.py
+script: 
+  - python3 PyFuscation.py || python PyFuscation.py
+  - pytest --flake8
 
