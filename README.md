@@ -1,12 +1,14 @@
 # PyFuscation
 
-Requires python3 
+[![Python 3](https://pyup.io/repos/github/tdefise/PyFuscation/python-3-shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Updates](https://pyup.io/repos/github/tdefise/PyFuscation/shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Build Status](https://travis-ci.com/tdefise/PyFuscation.svg?branch=master)](https://travis-ci.com/tdefise/PyFuscation)
+
+Requires python3
 
 ![alt text](https://github.com/CBHue/PyFuscation/blob/master/PyFuscation.png)
 
-usage: PyFuscation.py [-h] [-f] [-v] [-p] [--ps SCRIPT] 
+usage: PyFuscation.py [-h] [-f] [-v] [-p] [--ps SCRIPT]
 
-Optional arguments: 
+Optional arguments:
 
 	• -h, --help show this help message and exit
   
