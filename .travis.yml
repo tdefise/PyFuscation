@@ -26,5 +26,5 @@ script:
   - python3 PyFuscation.py || python PyFuscation.py
   - pytest --flake8
   - safety check
-  - pycodestyle PyFuscation
+  - pycodestyle PyFuscation.py
 
