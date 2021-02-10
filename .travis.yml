@@ -7,9 +7,6 @@ python:
   - "pypy3"
 
 stage:
-  - compliance_lint
-  - compliance_secret
-  - compliance_vulnerability
   - build
 
 
@@ -42,6 +39,8 @@ before_install:
   - pip install safety
   - pip install pycodestyle
   - pip --version
+
+script: python3 PyFuscation.py || python PyFuscation.py
 
 install:
   - pip install -r requirements.txt
