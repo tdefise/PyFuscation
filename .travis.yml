@@ -4,24 +4,16 @@ python:
   - "3.7.9"
   - "3.8.7"
   - "3.9.0"
+  - "3.9.1"
   - "pypy3"
-
-stage:
-  - build
 
 jobs:
   include:
-    - stage: compliance_lint
       name: "Compliance: Check if the code is properly lint"
       script:
         - pytest --flake8
         - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
     
-    - stage: build
-      name: "Python 3.9.1 on Xenial Linux"
-      python: 3.9.1
-      script: python3 PyFuscation.py || python PyFuscation.py
-
 before_install:
   - python --version
   - uname -a
