@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-'''
+"""
 PyFuscation.py
 This python3 script obfuscates powershell function, variable and parameters in an attempt to bypass AV blacklists
-'''
+"""
 
 import re
 import os
@@ -21,26 +21,26 @@ import banner
 
 
 def printR(out):
-    print("\033[91m{}\033[00m" .format("[!] " + out))
+    print("\033[91m{}\033[00m".format("[!] " + out))
 
 
 def printG(out):
-    print("\033[92m{}\033[00m" .format("[*] " + out))
+    print("\033[92m{}\033[00m".format("[*] " + out))
 
 
 def printY(out):
-    print("\033[93m{}\033[00m" .format("[+] " + out))
+    print("\033[93m{}\033[00m".format("[+] " + out))
 
 
 def printP(out):
-    print("\033[95m{}\033[00m" .format("[-] " + out))
+    print("\033[95m{}\033[00m".format("[-] " + out))
 
 
 def realTimeMuxER(command):
     p = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
     while True:
         output = p.stdout.readline().decode()
-        if output == '' and p.poll() is not None:
+        if output == "" and p.poll() is not None:
             break
         if output:
             print(output.strip())
@@ -48,25 +48,25 @@ def realTimeMuxER(command):
 
 def removeJunk(oF):
     # general cleanup
-    cmd = "sed -i -e \'/<#/,/#>/c\\\\\' " + oF
+    cmd = "sed -i -e '/<#/,/#>/c\\\\' " + oF
     realTimeMuxER(cmd)
-    cmd = "sed -i -e \'s/^[[:space:]]*#.*$//g\' " + oF
+    cmd = "sed -i -e 's/^[[:space:]]*#.*$//g' " + oF
     realTimeMuxER(cmd)
-    cmd = "sed -i \'/^$/d\' " + oF
+    cmd = "sed -i '/^$/d' " + oF
     realTimeMuxER(cmd)
 
 
 def useSED(DICT, oF):
     for var in DICT:
         new = str(DICT.get(var))
-        cmd = "sed -i -e \'s/" + var + '\\b' + "/" + new + "/g\' " + oF
+        cmd = "sed -i -e 's/" + var + "\\b" + "/" + new + "/g' " + oF
         realTimeMuxER(cmd)
 
 
 def THEreplacER(DICT, iF, oF):
-    iFHandle = open(iF, 'r')
-    ofHandle = open(oF, 'w')
-    regex = r'(\$\w{3,})'
+    iFHandle = open(iF, "r")
+    ofHandle = open(oF, "w")
+    regex = r"(\$\w{3,})"
     lower_DICT = list(map(lambda x: x.lower(), DICT))
     # For var replace with Dictionary value
     for line in iFHandle:
@@ -93,23 +93,23 @@ def findCustomParams(iFile, oFile, VARs):
     READ = False
     start = 0
     end = 0
-    regex = r'([\$-]\w{4,})'
-    ofHandle = open(oFile, 'w')
+    regex = r"([\$-]\w{4,})"
+    ofHandle = open(oFile, "w")
 
     with open(iFile, "r") as f:
         for line in f:
             line = line.strip()
 
-            if re.search(r'\bparam\b', line, re.I):
+            if re.search(r"\bparam\b", line, re.I):
                 # Ok we are at the begining of a custum parameter
                 READ = True
 
                 # The open paren is on another line so move until we find it
-                start = start + line.count('(')
+                start = start + line.count("(")
                 if start == 0:
                     continue
 
-                end = end + line.count(')')
+                end = end + line.count(")")
 
                 v = re.findall(regex, line)
                 for i in v:
@@ -143,8 +143,8 @@ def findCustomParams(iFile, oFile, VARs):
                         PARAMs[old] = new
                         ofHandle.write("Replacing: " + old + " with: " + new + "\n")
 
-                start = start + line.count('(')
-                end = end + line.count(')')
+                start = start + line.count("(")
+                end = end + line.count(")")
                 if start != 0 and start == end:
                     start = 0
                     end = 0
@@ -162,8 +162,8 @@ def findCustomParams(iFile, oFile, VARs):
 def findVARs(iFile, lFile):
     VARs = {}
     vNum = 9999
-    regex = r'(\$\w{6,})'
-    ofHandle = open(lFile, 'w')
+    regex = r"(\$\w{6,})"
+    ofHandle = open(lFile, "w")
 
     with open(iFile, "r") as f:
         for line in f:
@@ -180,7 +180,9 @@ def findVARs(iFile, lFile):
                         VARs[i] = new
                     else:
                         vNum = 99
-                        new = "$" + ''.join([random.choice(string.ascii_letters) for n in range(8)])
+                        new = "$" + "".join(
+                            [random.choice(string.ascii_letters) for n in range(8)]
+                        )
                         VARs[i] = new + str(vNum)
                         ofHandle.write("Replacing: " + i + " with: " + new + "\n")
                         vNum += 1
@@ -193,17 +195,21 @@ def findVARs(iFile, lFile):
 def findFUNCs(iFile, lFile):
 
     FUNCs = {}
-    ofHandle = open(lFile, 'w')
+    ofHandle = open(lFile, "w")
     with open(iFile, "r") as f:
         for line in f:
-            funcMatch = re.search(r'^\s*Function ([a-zA-Z0-9_-]{6,})[\s\{]+$', line, re.IGNORECASE)
+            funcMatch = re.search(
+                r"^\s*Function ([a-zA-Z0-9_-]{6,})[\s\{]+$", line, re.IGNORECASE
+            )
             if funcMatch and funcMatch.group(1) not in FUNCs:
                 if funcMatch.group(1) == "main":
                     continue
                 vNum = 9999
                 new = randomString(wordList)
                 FUNCs[funcMatch.group(1)] = new
-                ofHandle.write("Replacing: " + funcMatch.group(1) + " with: " + str(new) + "\n")
+                ofHandle.write(
+                    "Replacing: " + funcMatch.group(1) + " with: " + str(new) + "\n"
+                )
                 vNum += 1
     # return dict of variable and their replacements
     printY("Functions Replaced  : " + str(len(FUNCs)))
@@ -217,7 +223,7 @@ def randomString(iFile):
             if random.randrange(num):
                 continue
             line = aline
-        string = ''.join(e for e in line if e.isalnum())
+        string = "".join(e for e in line if e.isalnum())
         return string
 
 
@@ -242,19 +248,19 @@ def main():
     removeJunk(oFile)
 
     # Obfuscate Variables
-    if (args.var):
+    if args.var:
         obfuVAR = findVARs(iFile, vFile)
         useSED(obfuVAR, oFile)
         printP("Obfuscated Variables located  : " + vFile)
 
     # Obfuscate custom parameters
-    if (args.par):
+    if args.par:
         obfuPARMS = findCustomParams(iFile, pFile, obfuVAR)
         useSED(obfuPARMS, oFile)
         printP("Obfuscated Parameters located : " + pFile)
 
     # Obfuscate Functions
-    if (args.func):
+    if args.func:
         obfuFUNCs = findFUNCs(iFile, fFile)
         useSED(obfuFUNCs, oFile)
 
@@ -282,15 +288,21 @@ if __name__ == "__main__":
 
     config = configparser.ConfigParser()
     parser = ArgumentParser()
-    parser.add_argument("-f", dest="func", help="Obfuscate functions", action="store_true")
-    parser.add_argument("-v", dest="var", help="Obfuscate variables", action="store_true")
-    parser.add_argument("-p", dest="par", help="Obfuscate parameters", action="store_true")
+    parser.add_argument(
+        "-f", dest="func", help="Obfuscate functions", action="store_true"
+    )
+    parser.add_argument(
+        "-v", dest="var", help="Obfuscate variables", action="store_true"
+    )
+    parser.add_argument(
+        "-p", dest="par", help="Obfuscate parameters", action="store_true"
+    )
     parser.add_argument("--ps", dest="script", help="Obfuscate powershell")
 
     args = parser.parse_args()
 
     # Powershell script
-    if (args.script is None):
+    if args.script is None:
         parser.print_help()
         exit()
     else:
