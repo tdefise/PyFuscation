@@ -156,7 +156,7 @@ def findCustomParams(iFile, oFile, VARs):
                 continue
 
     printY("Parameters Replaced : " + str(len(PARAMs)))
-
+    ofHandle.close()
     return PARAMs
 
 
@@ -190,6 +190,7 @@ def findVARs(iFile, lFile):
 
     # return dict of variable and their replacements
     printY("Variables Replaced  : " + str(len(VARs)))
+    ofHandle.close()
     return VARs
 
 
@@ -214,6 +215,7 @@ def findFUNCs(iFile, lFile):
                 vNum += 1
     # return dict of variable and their replacements
     printY("Functions Replaced  : " + str(len(FUNCs)))
+    ofHandle.close()
     return FUNCs
 
 
@@ -305,12 +307,12 @@ if __name__ == "__main__":
     # Powershell script
     if args.script is None:
         parser.print_help()
-        exit()
+        sys.exit()
     else:
         # Check if the input file is valid:
         if not os.path.isfile(args.script):
             printR("Check File: " + args.script)
-            exit()
+            sys.exit()
         else:
             PSconfigFile = os.path.abspath(os.path.dirname(__file__)) + "/PSconfig.ini"
             config.read(PSconfigFile)
@@ -320,6 +322,6 @@ if __name__ == "__main__":
     wordList = os.path.abspath(os.path.dirname(__file__)) + "/wordList.txt"
     if not os.path.isfile(wordList):
         printR("Check wordList: " + wordList)
-        exit()
+        sys.exit()
 
     main()
