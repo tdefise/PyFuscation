@@ -17,7 +17,11 @@ jobs:
       script:
         - pytest --flake8
         - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-        - black --check --diff --color 
+        - black --check --diff --color
+      
+      name: "Compliance: Security checks"
+      script: semgrep --config=p/bandit .
+
   allow_failures:
   - python: "pypy3"
 
@@ -27,6 +31,7 @@ before_install:
   - pip install pytest-flake8
   - pip install safety
   - pip install pycodestyle
+  - pip install semgrep
   - pip install black
 
 script: python3 PyFuscation.py || python PyFuscation.py
