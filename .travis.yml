@@ -17,9 +17,10 @@ jobs:
       script:
         - pytest --flake8
         - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-        - black --check --diff --color .
+        - black --check --diff --color 
+  allow_failures:
+  - python: "pypy3"
 
-    
 before_install:
   - python --version
   - pip install -U pip
