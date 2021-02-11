@@ -17,16 +17,16 @@ jobs:
       script:
         - pytest --flake8
         - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
+        - black --check --diff --color .
+
     
 before_install:
   - python --version
-  - uname -a
-  - lsb_release -a
   - pip install -U pip
   - pip install pytest-flake8
   - pip install safety
   - pip install pycodestyle
-  - pip --version
+  - pip install black
 
 script: python3 PyFuscation.py || python PyFuscation.py
 
