@@ -18,7 +18,7 @@ jobs:
           - pytest --flake8
           - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
           - black --check --diff --color
-      
+          - isort **/*.py -c -v
       - name: "Compliance: Semgrep check"
         script: 
           - semgrep --config=p/bandit .
@@ -36,6 +36,8 @@ before_install:
   - pip install pycodestyle
   - pip install semgrep
   - pip install black
+  - pip install isort
+
 
 script: python3 PyFuscation.py || python PyFuscation.py
 
