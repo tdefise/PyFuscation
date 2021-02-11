@@ -13,14 +13,14 @@ python:
 
 jobs:
   include:
-      name: "Compliance: Check if the code is properly lint"
-      script:
-        - pytest --flake8
-        - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-        - black --check --diff --color
+      - name: "Compliance: Check if the code is properly lint"
+        script:
+          - pytest --flake8
+          - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
+          - black --check --diff --color
       
-      name: "Compliance: Security checks"
-      script: semgrep --config=p/bandit .
+      - name: "Compliance: Security checks"
+        script: semgrep --config=p/bandit .
 
   allow_failures:
   - python: "pypy3"
