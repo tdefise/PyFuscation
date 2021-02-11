@@ -19,8 +19,11 @@ jobs:
           - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
           - black --check --diff --color
       
-      - name: "Compliance: Security checks"
-        script: semgrep --config=p/bandit .
+      - name: "Compliance: Semgrep check"
+        script: 
+          - semgrep --config=p/bandit .
+          - semgrep --config=p/r2c-bug-scan .
+          - semgrep --config=p/r2c-best-practices .
 
   allow_failures:
   - python: "pypy3"
