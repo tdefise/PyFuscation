@@ -13,7 +13,10 @@ python:
 
 jobs:
   include:
-      - name: "Compliance: Check if the code is properly lint"
+      - name: "Compliance: Code Qualily"
+        # The idea is to separate Code Quality checks as 
+        # - Some libraries are not available for all version of Python
+        # - The source code is the same and there is almost no changes in 
         script:
           # Install Flake8 (1.20s Using cached)
           - pip install pytest-flake8
@@ -24,9 +27,12 @@ jobs:
           # Install black (2.18s Using cached)
           - pip install black
           - black --check --diff --color
-
+          # Install 
           - pip install xenon
-          - xenon --max-absolute B --max-modules A --max-average A .
+          - xenon --max-average A --max-modules A --max-absolute C .
+          # 
+          - pip install radon
+          - radon .
 
       - name: "Compliance: Semgrep check"
         script: 
