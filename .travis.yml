@@ -15,17 +15,18 @@ jobs:
   include:
       - name: "Compliance: Check if the code is properly lint"
         script:
+          # Install Flake8 (1.20s Using cached)
           - pip install pytest-flake8
           - pytest --flake8
-          
+          # Install Flake8 (0.63s Using cached)
           - pip install pycodestyle
           - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-
+          # Install black (2.18s Using cached)
           - pip install black
           - black --check --diff --color
 
           - pip install xenon
-          - xenon --max-absolute B --max-modules A --max-average A
+          - xenon --max-absolute B --max-modules A --max-average A .
 
       - name: "Compliance: Semgrep check"
         script: 
