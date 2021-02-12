@@ -77,7 +77,7 @@ def THEreplacER(DICT, iF, oF):
             ofHandle.flush()
         else:
             for var in v:
-                if var.lower() in lower_DICT:
+                if (VAR.lower() in lower_DICT):
                     new = str(DICT.get(var))
                     ofHandle.write(line.replace(var, new) + "\n")
                     ofHandle.flush()
@@ -87,7 +87,6 @@ def THEreplacER(DICT, iF, oF):
 
     iFHandle.close()
     ofHandle.close()
-
 
 def findCustomParams(iFile, oFile, VARs):
     PARAMs = {}
