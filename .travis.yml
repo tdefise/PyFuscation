@@ -1,9 +1,12 @@
 arch: amd64
 os: linux
-dist: focal
+dist: focal      
 language: python
-cache: pip
+cache: pip       # Cache content the pip content to speed up the build process
 python:
+  - "3.3.7"
+  - "3.4.10"
+  - "3.3.7"
   - "3.6.12"
   - "3.7.9"
   - "3.8.7"
@@ -13,47 +16,48 @@ python:
 
 jobs:
   include:
-      - name: "Compliance: Code Qualily"
-        # The idea is to separate Code Quality checks as 
-        # - Some libraries are not available for all version of Python
-        # - The source code is the same and there is almost no changes in 
+      - name: "Compliance: Code Quality"
         script:
-          # Install Flake8 (0.63s Using cached)
-          # - pip install pycodestyle
-          # - pycodestyle PyFuscation.py --ignore "E501, E101, W191"
-          # Install black (2.18s Using cached)
-          # per-file auto-detection
+          # Install & perform black checks ()
           - pip install black
           - black --check --diff --color
-          # Install 
+          # Install & perform xenon checks
           - pip install xenon
           - xenon --max-average A --max-modules A --max-absolute C .
+          # Install & perform radon checks on the current path
           - pip install radon
           - radon cc --min B --max F --show-complexity .
           - radon mi --show .
 
-      - name: "Compliance: Semgrep check"
+      - name: "Test: Security check"
         script: 
+          # Install & perform safety check (Dependencies check)
+          - pip install safety
+          - safety check -r requirements
+          # Install & perform Semgrep checks (Security check, 
+          # , best practices, bug scan ) on the current path
           - pip install semgrep
           - semgrep --config=p/bandit .
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
-
+  
+  # End-Of-Life
   allow_failures:
-  - python: "pypy3"
+  - python: "3.3.7"
+  - python: "3.4.10"
+  - python: "3.3.7"
 
 before_install:
-  - python --version
+  # Upgrade to the latest version of pip
   - pip install -U pip
-  - pip install safety
   - pip install flake8
 
-script: python3 PyFuscation.py || python PyFuscation.py
-
-install:
-  - pip install -r requirements.txt
-  # Safety is tied to the version of Python on which it runs.
-  - safety check
+script: 
   # Flake8 is tied to the version of Python on which it runs.
   # Perform PEP8 naming convention checks
-  - flake8 .
+  - flake8 
+  - python3 PyFuscation.py || python PyFuscation.py
+
+install:
+  # Install the requirement to run my code
+  - pip install -r requirements.txt
