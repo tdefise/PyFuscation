@@ -38,6 +38,7 @@ jobs:
           - radon mi --show .
 
       - name: "Test: Security check"
+        python : "3.9.1"
         script: 
           # Install & perform safety check (Dependencies check)
           - pip install safety
