@@ -44,6 +44,10 @@ jobs:
           # Install & perform safety check (Dependencies check)
           - pip install safety
           - safety check -r requirements
+          - npm install -g snyk
+          - snyk -v
+          - snyk test
+          - snyk monitor
           # Install & perform Semgrep checks (Security check, 
           # , best practices, bug scan ) on the current path
           - pip install semgrep
@@ -70,3 +74,7 @@ script:
 install:
   # Install the requirement to run my code
   - pip install -r requirements.txt
+
+env:
+  global:
+  - secure: CTJAiTysm47X8hZnD8P5/RbfP0M1TPkWVdeK5B/gjLQaKEEIrBcWEp1rM1DYbNLYUMnL+u45iBR5e38NEPFsc0GGKw/PtlYjgRltdyrI3yagulcidgjqPsQiHXi9Tp/q7e2uqP68OACJBLSDo5dGeMApUitLpTEAZWye6m7m5VgJaQHXZd7DeX3OkcH5milojmzZrX5g4IBkwTljgvLIRt22ij+9Ee2+mfMRHGqFpFVhTP7dDcxTDSlDtTa2DQkl0Vb+NsqUfmSzNAGWdvHzdG+DBbUek4OUo/dZj9q7eZoRCtJB+DWK4sN8raxAAstu4n0XCErL+8lVFTnc9VVTGEqLSru681JW1wY3nGg0o8fGpNphvwZS7QSmzCXzBIzXSFn+wzQatySyYQZw1dwQG0uFBnoHlcreOxSn24XXIE3trZvbTIld1MEec3rDhgqn/4pXzrxCekKY8MDCFb3ceQZbS3uWDJ9dvPi9vY1ep5r+7WNPqB/25S2Z2fUKOQ9taRIap2aOT15OqpCm6TBLpwolVYfmGPQnXh8HrzVVWXf2IRa/dNPZSv3Xtc4oEAaRYepe2sMVICuZYJdPrt2v/yHmqe7GXB5Y5k6yoJ5OjiJT5MhVMEYv/wwaCzAGAA8ycW35TX93OncLYThHMq1VqEyCFy/YoFpSgMZx+0HPzwI=
