@@ -43,6 +43,7 @@ jobs:
           # Install & perform safety check (Dependencies check)
           - pip install safety
           - safety check -r requirements
+          # Install & perform snyk check (Dependencies check)
           - npm install -g snyk
           - snyk -v
           - snyk test
