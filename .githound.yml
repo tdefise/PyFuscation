@@ -8,7 +8,6 @@ warn:
 fail:
   - '(?i)db_(user(name)?|pass(word)?|name)\W*[:=,]\W*.+$'
   - '(?i)pass(word)?\W*[:=,]\W*.+$'
-  - '(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'
   - ''(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]''
   - 'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
   - '(?i)(aws_access_key_id|aws_secret_access_key)(.{0,20})?=.[0-9a-zA-Z\/+]{20,40}'
