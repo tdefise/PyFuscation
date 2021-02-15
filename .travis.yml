@@ -57,12 +57,8 @@ jobs:
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
           # Install earlybird
-          - GO111MODULE=on
-          - git clone https://github.com/americanexpress/earlybird
-          - cd earlybird
-          - ./build.sh && ./install.sh
-          - cd ..
-          - go-earlybird display-confidence "high" -display-severity "medium" -ignorefile=/earlybird/*
+          - go get github.com/ezekg/git-hound
+          - git log -p | git hound sniff
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
