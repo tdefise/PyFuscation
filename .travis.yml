@@ -57,8 +57,8 @@ jobs:
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
           # Install truffleHog
-          - GO111MODULE=on go get github.com/zricethezav/gitleaks/v7
-          - gitleaks --path=./ -v
+          - pip install whispers
+          - whispers .
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
