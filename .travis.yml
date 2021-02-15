@@ -2,7 +2,9 @@ arch: amd64
 os: linux
 dist: focal      
 language: python
-cache: pip       # Cache content the pip content to speed up the build process
+cache: 
+  - pip       # Cache content the pip content to speed up the build process
+  - npm       # Cache content the npm (Snyk.io) content to speed up the build process
 
 git:
   quiet: true    # Avoiding log file size limits
@@ -42,7 +44,7 @@ jobs:
         script: 
           # Install & perform safety check (Dependencies check)
           - pip install safety
-          - safety check -r requirements
+          - safety check -r requirements.txt
           # Install & perform snyk check (Dependencies check)
           - npm install -g snyk
           - snyk -v
@@ -54,6 +56,9 @@ jobs:
           - semgrep --config=p/bandit .
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
+          # Install truffleHog
+          - pip install truffleHog
+          - truffleHog --regex --entropy .
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
