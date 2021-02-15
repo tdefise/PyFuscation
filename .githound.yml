@@ -8,16 +8,11 @@ warn:
 fail:
   - '(?i)db_(user(name)?|pass(word)?|name)\W*[:=,]\W*.+$'
   - '(?i)pass(word)?\W*[:=,]\W*.+$'
-
-  # Cloud
   - '(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'                 # AWS Access Key
   - '(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]'                                # AWS Secret Key
   - 'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'           # AWS MWS key
   - '(?i)(aws_access_key_id|aws_secret_access_key)(.{0,20})?=.[0-9a-zA-Z\/+]{20,40}'    # AWS Credential file information
-  
   - '-----BEGIN EC PRIVATE KEY-----'
-
-  # Social Media
   - '(?i)(facebook|fb)(.{0,20})?(?-i)['\"][0-9a-f]{32}['\"]'
   - '(?i)(facebook|fb)(.{0,20})?['\"][0-9]{13,17}['\"]'
   - '(?i)twitter(.{0,20})?['\"][0-9a-z]{35,44}['\"]'
