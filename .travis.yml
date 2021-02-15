@@ -56,11 +56,13 @@ jobs:
           - semgrep --config=p/bandit .
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
-          # Install truffleHog
+          # Install earlybird
+          - GO111MODULE=on
           - git clone https://github.com/americanexpress/earlybird
           - cd earlybird
           - ./build.sh && ./install.sh
-          - go-earlybird  display-confidence "high" -display-severity "medium" -ignorefile=/earlybird/*
+          - cd ..
+          - go-earlybird display-confidence "high" -display-severity "medium" -ignorefile=/earlybird/*
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
