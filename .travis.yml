@@ -71,7 +71,7 @@ before_install:
 script: 
   # Flake8 is tied to the version of Python on which it runs.
   # Perform PEP8 naming convention checks
-  - flake8 
+  - flake8 --count --statistics
   - python3 PyFuscation.py || python PyFuscation.py
 
 install:
