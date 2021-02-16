@@ -56,11 +56,9 @@ jobs:
           - semgrep --config=p/bandit .
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
-          # 
-          - apt-get install golang-1.12
-          - git clone https://github.com/americanexpress/earlybird && cd earlybird &&  ./build.sh && ./install.sh && cd ..
-          - go-earlybird -ignorefile earlybird/*
-          # Install earlybird
+          # Install whispers
+          - ./whispers.sh
+          # Install Git Hound
           - go get github.com/ezekg/git-hound
           - git log -p | git hound sniff
   
