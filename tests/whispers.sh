@@ -1,7 +1,8 @@
 #!/bin/bash
 
 pip install whispers
-whispers scripts > result.txt
+whispers --help
+whispers -config config.yml > result.txt
 declare -i exit=0
 
 while read result; do

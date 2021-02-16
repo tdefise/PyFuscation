@@ -1,0 +1,10 @@
+include:
+  files:
+    - "../*.py"
+    - "../*.yml"
+    - "../*.yml"
+
+exclude:
+  files:
+    - "/tests/**"
+    - "../.vscode/*"
