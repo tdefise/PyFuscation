@@ -57,7 +57,7 @@ jobs:
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
           # Install whispers
-          - ./whispers.sh
+          - ./tests/whispers.sh
           # Install Git Hound
           - go get github.com/ezekg/git-hound
           - git log -p | git hound sniff
