@@ -31,13 +31,13 @@ jobs:
           # Install & perform black checks ()
           - pip install black
           - black --check --diff --color
-          # Install & perform xenon checks
-          - pip install xenon
-          - xenon --max-average A --max-modules A --max-absolute C .
           # Install & perform radon checks on the current path
           - pip install radon
           - radon cc --min B --max F --show-complexity .
           - radon mi --show .
+          # Install & perform isort
+          - pip install isort
+          - isort . --diff
 
       - name: "Test: Security check"
         python : "3.9.1"
