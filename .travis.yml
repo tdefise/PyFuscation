@@ -37,7 +37,7 @@ jobs:
           - radon mi --show .
           # Install & perform isort
           - pip install isort
-          - isort . --diff
+          - isort --diff --profile black .
 
       - name: "Test: Security check"
         python : "3.9.1"
@@ -56,11 +56,9 @@ jobs:
           - semgrep --config=p/bandit .
           - semgrep --config=p/r2c-bug-scan .
           - semgrep --config=p/r2c-best-practices .
-          # Install whispers
+          # Install & perform whispers check
+          - pip install whispers
           - ./tests/whispers.sh
-          # Install Git Hound
-          - go get github.com/ezekg/git-hound
-          - git log -p | git hound sniff
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
