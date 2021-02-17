@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pip install whispers
-
 whispers scripts > result.txt
 declare -i exit=0
 
@@ -10,11 +8,9 @@ while read read; do
   severity=$(jq '.severity' <<< $r | sed -e 's/^"//' -e 's/"$//')
   if [ "$severity" == "MAJOR" ];then
      exit=1
-  fi
   
   elif [ "$severity" == "CRITICAL" ];then
      exit=1
-  fi
   
   elif [ "$severity" == "BLOCKER" ];then
      exit=1
