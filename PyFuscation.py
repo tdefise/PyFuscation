@@ -5,19 +5,19 @@ PyFuscation.py
 This python3 script obfuscates powershell function, variable and parameters in an attempt to bypass AV blacklists
 """
 
-import re
-import os
-import sys
 import ast
-import time
-import shutil
-import random
-import subprocess
-import shlex
-import string
-from argparse import ArgumentParser
-import configparser
 import banner
+import configparser
+import os
+import random
+import re
+import shlex
+import shutil
+import subprocess
+import string
+import sys
+import time
+from argparse import ArgumentParser
 
 
 def printR(out):
