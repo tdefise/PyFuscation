@@ -6,18 +6,19 @@ This python3 script obfuscates powershell function, variable and parameters in a
 """
 
 import ast
-import banner
 import configparser
 import os
 import random
 import re
 import shlex
 import shutil
-import subprocess
 import string
+import subprocess
 import sys
 import time
 from argparse import ArgumentParser
+
+import banner
 
 
 def printR(out):
