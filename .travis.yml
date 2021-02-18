@@ -33,7 +33,7 @@ jobs:
           - black --check --diff --color
           # Install & perform radon checks on the current path
           - pip install radon
-          - radon cc --min B --max F --show-complexity .
+          - ./tests/radon_cc.sh
           - radon mi --show .
           # Install & perform isort
           - pip install isort
