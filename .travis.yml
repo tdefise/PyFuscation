@@ -37,7 +37,7 @@ jobs:
           - radon mi --show .
           # Install & perform isort
           - pip install isort
-          - isort --diff --profile black .
+          - ./tests/isort.sh
 
       - name: "Test: Security check"
         python : "3.9.1"
