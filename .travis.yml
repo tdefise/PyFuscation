@@ -62,7 +62,7 @@ jobs:
           # Install & perform graudit
           - git clone https://github.com/wireghoul/graudit
           - cd graudit
-          - ./graudit -d -c 2 ./signatures/python.db ..
+          - ./graudit -d ./signatures/python.db -c 2 ..
 
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
