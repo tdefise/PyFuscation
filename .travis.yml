@@ -30,7 +30,7 @@ jobs:
         script:
           # Install & perform black checks ()
           - pip install black
-          - black --check --diff --color
+          - black --check --diff --color .
           # Install & perform radon checks on the current path
           - pip install radon
           - ./tests/radon_cc.sh
@@ -59,6 +59,10 @@ jobs:
           # Install & perform whispers check
           - pip install whispers
           - ./tests/whispers.sh
+          # Install & perform SecretScan
+          - git clone https://github.com/deepfence/SecretScanner
+          - go build -v -i 
+          - ./SecretScanner -config-path config.yaml -debug-level ERROR -local . -output-path results.json
   
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
