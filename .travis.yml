@@ -59,6 +59,10 @@ jobs:
           # Install & perform whispers check
           - pip install whispers
           - ./tests/whispers.sh
+          # Install & perform graudit
+          - git clone https://github.com/wireghoul/graudit
+          - cd graudit
+          - ./graudit -d -c 2 ./signatures/python.db ..
 
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
