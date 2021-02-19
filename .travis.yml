@@ -59,12 +59,7 @@ jobs:
           # Install & perform whispers check
           - pip install whispers
           - ./tests/whispers.sh
-          # Install & perform SecretScan
-          - git clone https://github.com/deepfence/SecretScanner
-          - cd SecretScanner
-          - go build -v -i 
-          - ./SecretScanner -config-path ./tests/config_SecretScanner.yml -debug-level ERROR -local .. -output-path results.json
-  
+
   allow_failures: # Jobs allowed to failed (such as EOL Versions)
   - python: "3.5.10"
 
