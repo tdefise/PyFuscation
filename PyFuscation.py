@@ -41,7 +41,8 @@ def realTimeMuxER(command):
     # command is not controllable by an external resource
     p = subprocess.Popen(
         shlex.split(command),  # nosemgrep: dangerous-subprocess-use
-        stdout=subprocess.PIPE)
+        stdout=subprocess.PIPE
+    )
     while True:
         output = p.stdout.readline().decode()
         if output == "" and p.poll() is not None:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-whispers --config config_whispers.yml > result.txt
+whispers --config config_whispers.yml -v .. > result.txt
 declare -i exit=0
 
 while read read; do
