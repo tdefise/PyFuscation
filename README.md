@@ -1,6 +1,6 @@
 # PyFuscation
 
-[![Python 3](https://pyup.io/repos/github/tdefise/PyFuscation/python-3-shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Updates](https://pyup.io/repos/github/tdefise/PyFuscation/shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Build Status](https://travis-ci.com/tdefise/PyFuscation.svg?branch=master)](https://travis-ci.com/tdefise/PyFuscation)
+[![Python 3](https://pyup.io/repos/github/tdefise/PyFuscation/python-3-shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Updates](https://pyup.io/repos/github/tdefise/PyFuscation/shield.svg)](https://pyup.io/repos/github/tdefise/PyFuscation/) [![Build Status](https://travis-ci.com/tdefise/PyFuscation.svg?branch=master)](https://travis-ci.com/tdefise/PyFuscation) [![Code Style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Requires python3
 

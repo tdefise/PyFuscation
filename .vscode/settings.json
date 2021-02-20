@@ -2,4 +2,20 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
+    "python.pythonPath": "C:\\Users\\tdefi\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "semgrep.rules": "https://semgrep.dev/p/bandit",
+    "semgrep.languages": [
+        "c",
+        "go",
+        "java",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "ocaml",
+        "php",
+        "python",
+        "ruby",
+        "typescript",
+        "typescriptreact"
+    ]
 }

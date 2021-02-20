@@ -3,9 +3,9 @@
 whispers --config config_whispers.yml -v .. > result.txt
 declare -i exit=0
 
-while read read; do
-  echo $read
-  severity=$(jq '.severity' <<< $r | sed -e 's/^"//' -e 's/"$//')
+while read -r line; do
+  echo "$line"
+  severity=$(jq '.severity' <<< "$line" | sed -e 's/^"//' -e 's/"$//')
   if [ "$severity" == "MAJOR" ];then
      exit=1
   

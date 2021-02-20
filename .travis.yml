@@ -1,6 +1,6 @@
 arch: amd64
 os: linux
-dist: focal      
+dist: focal
 language: python
 cache: 
   - pip       # Cache content the pip content to speed up the build process
@@ -41,7 +41,7 @@ jobs:
 
       - name: "Test: Security check"
         python : "3.9.1"
-        script: 
+        script:
           # Install & perform safety check (Dependencies check)
           - pip install safety
           - safety check -r requirements.txt
@@ -50,7 +50,7 @@ jobs:
           - snyk -v
           - snyk test
           - snyk monitor
-          # Install & perform Semgrep checks (Security check, 
+          # Install & perform Semgrep checks (Security check,
           # , best practices, bug scan ) on the current path
           - pip install semgrep
           - semgrep --config=p/bandit .
