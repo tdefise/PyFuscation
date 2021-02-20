@@ -68,7 +68,7 @@ before_install:
   - pip install -U pip
   - pip install flake8
 
-script: 
+script:
   # Flake8 is tied to the version of Python on which it runs.
   # Perform PEP8 naming convention checks
   - flake8 --count --statistics
