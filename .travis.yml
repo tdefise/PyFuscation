@@ -1,6 +1,7 @@
-arch: amd64
+arch: arm64-graviton2
 os: linux
-dist: focal
+group: edge
+virt: lxd
 language: python
 cache: 
   - pip       # Cache content the pip content to speed up the build process
